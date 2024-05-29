@@ -1,4 +1,4 @@
 for i in ["neofetch.lja", "neofetch.py"]:
-    shutil.copy(i, path.join(root, "bin", i))
+    shutil.copyfile(i, path.join(root, "bin", i))
 
-shutil.copy("neofetch.man", path.join(root, "usr/share/man", "neofetch.man"))
+shutil.copyfile("neofetch.man", path.join(root, "usr/share/man", "neofetch.man"))
