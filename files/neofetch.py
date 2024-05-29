@@ -27,7 +27,7 @@ vr(
 )
 
 vr("size", term.detect_size(3))
-vr("lomg", vr("size")[0] > 50)
+vr("lomg", vr("size")[1] > 50)
 vr("time", int(pv[0]["uptimee"] + time.monotonic()))
 vr("ustr", "")
 vr("hr", vr("time") // 3600)  # Take out the hours
@@ -66,7 +66,6 @@ if vr("lomg"):
             f'{colors.be_main}        ^"**""          "YP\'{colors.endc}',
         ],
     )
-    vr("ansi", True)
 else:
     vr("sep", 14)
     vr(
@@ -80,12 +79,11 @@ else:
             "'-----------'",
         ],
     )
-    vr("ansi", False)
 vr(
     "tex",
     [
         (
-            (colors.yellow_t if vr("ansi") else "")
+            colors.yellow_t
             + be.based.system_vars["USER"]
             + "@"
             + be.based.system_vars["HOSTNAME"]
@@ -93,18 +91,18 @@ vr(
         ),
         "---------",
         (
-            (colors.yellow_t if vr("ansi") else "")
+            colors.yellow_t
             + "OS"
             + colors.endc
             + ": "
-            + (colors.be_main if vr("ansi") else "")
+            + (colors.be_main if vr("lomg") else colors.yellow_t)
             + "Beryllium "
             + be.based.system_vars["VERSION"]
             + colors.endc
         ),
         (colors.yellow_t + "Host" + colors.endc + ": " + be.based.system_vars["BOARD"]),
         (
-            (colors.yellow_t if vr("ansi") else "")
+            colors.yellow_t
             + "CircuitPython"
             + colors.endc
             + ": "
@@ -115,7 +113,7 @@ vr(
         + str(len(listdir(pv[0]["root"] + "/etc/jpkg/Installed")))
         + " (jpkg)",
         "{}Resolution:{} {}x{}".format(
-            colors.yellow_t if vr("ansi") else "", colors.endc, vr("size")[1], vr("size")[0]
+            colors.yellow_t, colors.endc, vr("size")[1], vr("size")[0]
         ),
     ],
 )
@@ -123,20 +121,20 @@ if vr("lomg"):
     vrp(
         "tex",
         [
-            "{}CPU{}: {}".format(colors.yellow_t if vr("ansi") else "", colors.endc, vr("cpul")),
+            "{}CPU{}: {}".format(colors.yellow_t, colors.endc, vr("cpul")),
             "{}Terminal{}: {}".format(
-                colors.yellow_t if vr("ansi") else "", colors.endc, pv[0]["console_active"]
+                colors.yellow_t, colors.endc, pv[0]["console_active"]
             ),
         ],
     )
 vrp(
     "tex",
     [
-        "{}{}Memory{}: {}".format(colors.yellow_t if vr("ansi") else "", "System " if vr("lomg") else "", colors.endc, vr("raml")),
+        "{}{}Memory{}: {}".format(colors.yellow_t, "System " if vr("lomg") else "", colors.endc, vr("raml")),
     ],
 )
 
-if vr("ansi"):
+if vr("lomg"):
     vrp(
         "tex",
         [
