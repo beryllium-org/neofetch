@@ -130,7 +130,9 @@ if vr("lomg"):
 vrp(
     "tex",
     [
-        "{}{}Memory{}: {}".format(colors.yellow_t, "System " if vr("lomg") else "", colors.endc, vr("raml")),
+        "{}{}Memory{}: {}".format(
+            colors.yellow_t, "System " if vr("lomg") else "", colors.endc, vr("raml")
+        ),
     ],
 )
 
@@ -157,12 +159,24 @@ if vr("lomg"):
 
 for pv[get_pid()]["i"] in range(0, max(len(vr("logo")), len(vr("tex")))):
     try:
-        term.nwrite(
-            vr("logo")[vr("i")]
-            + ((vr("sep") - len(be.api.remove_ansi(vr("logo")[vr("i")]))) * " ")
-        )
+        vr("ansiless", vr("logo")[vr("i")])
+        for pv[get_pid()]["j"] in [
+            colors.black_t,
+            colors.red_t,
+            colors.green_t,
+            colors.yellow_t,
+            colors.blue_t,
+            colors.magenta_t,
+            colors.white_t,
+            colors.cyan_t,
+            colors.be_main,
+            colors.endc,
+        ]:
+            vr("ansiless", vr("ansiless").replace(vr("j"), ""))
+        term.nwrite(vr("logo")[vr("i")] + ((vr("sep") - len(vr("ansiless"))) * " "))
     except IndexError:
         term.nwrite(vr("sep") * " ")
+
     try:
         term.nwrite(vr("tex")[vr("i")])
     except IndexError:
