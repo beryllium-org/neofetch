@@ -1,1 +1,1 @@
-fpexec /bin/neofetch.py
+fpexec /bin/neofetch/main.py
