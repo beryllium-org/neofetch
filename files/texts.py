@@ -11,12 +11,17 @@ vr(
         "---------",
         (
             colors.yellow_t
-            + "OS"
+            + "Kernel"
             + colors.endc
             + ": "
             + (colors.be_main if vr("lomg") else colors.yellow_t)
-            + "Beryllium "
-            + be.based.system_vars["VERSION"]
+            + (
+                be.based.system_vars["VERSION"]
+                if vr("lomg")
+                else be.based.system_vars["VERSION"][
+                    : be.based.system_vars["VERSION"].find("-")
+                ]
+            )
             + colors.endc
         ),
         (colors.yellow_t + "Host" + colors.endc + ": " + be.based.system_vars["BOARD"]),
