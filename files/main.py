@@ -27,7 +27,7 @@ vr(
 )
 
 vr("size", term.detect_size(3))
-vr("lomg", vr("size")[1] > 50)
+vr("lomg", vr("size") and vr("size")[1] > 50)
 vr("time", int(pv[0]["uptimee"] + time.monotonic()))
 vr("ustr", "")
 vr("hr", vr("time") // 3600)  # Take out the hours
