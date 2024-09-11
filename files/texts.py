@@ -33,7 +33,7 @@ vr(
             + (
                 be.based.system_vars["IMPLEMENTATION_RAW"]
                 if vr("lomg")
-                else be.based.system_vars["IMPLEMENTATION_RAW"]
+                else be.based.system_vars["IMPLEMENTATION"]
             )
         ),
         "{}Uptime{}: {}".format(colors.yellow_t, colors.endc, vr("ustr")),
