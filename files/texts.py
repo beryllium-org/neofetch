@@ -30,7 +30,11 @@ vr(
             + "CircuitPython"
             + colors.endc
             + ": "
-            + be.based.system_vars["IMPLEMENTATION"]
+            + (
+                be.based.system_vars["IMPLEMENTATION_RAW"]
+                if vr("lomg")
+                else be.based.system_vars["IMPLEMENTATION_RAW"]
+            )
         ),
         "{}Uptime{}: {}".format(colors.yellow_t, colors.endc, vr("ustr")),
         f"{colors.yellow_t}Packages{colors.endc}: "
